@@ -22,7 +22,9 @@
         "@typescript-eslint"
     ],
     "ignorePatterns": [
-        "**/*.js"
+        "**/*.js",
+        "bin/**",
+        "lib/**"
     ],
     "rules": {
         "no-console": "error",
