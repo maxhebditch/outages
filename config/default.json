@@ -2,7 +2,8 @@
     "API": {
         "URL": "https://api.krakenflex.systems/interview-tests-mock-api/v1",
         "OUTAGES_ENDPOINT": "/outages",
-        "SITE_INFO": "/site-info"
+        "SITE_INFO": "/site-info",
+        "POST_ENDPOINT": "/site-outages"
     },
     "FILTER": {
         "DATE_BEFORE": "2022-01-01T00:00:00.000Z"
