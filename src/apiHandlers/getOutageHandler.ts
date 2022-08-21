@@ -14,5 +14,5 @@ export const requestOutages = async (): Promise<AxiosResponse> => {
 }
 
 export const getAllOutages = async (): Promise<RequestResponse> => {
-    return handleRequest(requestOutages)
+    return handleRequest(requestOutages())
 }

@@ -3,10 +3,10 @@ import { RequestResponse } from '../types/requestType'
 import { AxiosResponse, AxiosError } from 'axios'
 
 export const handleRequest = async (
-    getAPI: () => Promise<AxiosResponse>
+    getAPI: Promise<AxiosResponse>
 ): Promise<RequestResponse> => {
     try {
-        const response: AxiosResponse = await getAPI()
+        const response: AxiosResponse = await getAPI
 
         return {
             success: true,
