@@ -24,7 +24,8 @@
     "ignorePatterns": [
         "**/*.js",
         "bin/**",
-        "lib/**"
+        "lib/**",
+        "tests/**"
     ],
     "rules": {
         "camelcase": "error",
