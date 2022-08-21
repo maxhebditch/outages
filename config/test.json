@@ -1,0 +1,6 @@
+{
+    "API": {
+        "URL": "https://api.krakenflex.systems/interview-tests-mock-api/v1",
+        "OUTAGES_ENDPOINT": "/outages"
+    }
+}
