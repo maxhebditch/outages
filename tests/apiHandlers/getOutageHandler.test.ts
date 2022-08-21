@@ -1,5 +1,5 @@
 import * as outageHandler from '../../src/apiHandlers/getOutageHandler'
-import { mockAllOutagesItems } from './mocks/mockResponses'
+import { mockAllOutagesItems } from '../mocks/mockResponses'
 import axios, { AxiosError } from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import config from 'config'

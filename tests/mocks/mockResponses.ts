@@ -1,5 +1,5 @@
-import { OutageItem } from '../../../src/types/outageTypes'
-import { SiteInfo } from '../../../src/types/siteInfoTypes'
+import { OutageItem } from '../../src/types/outageTypes'
+import { SiteInfo } from '../../src/types/siteInfoTypes'
 
 export const mockAllOutagesItems: OutageItem[] = [
     {
