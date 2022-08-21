@@ -2,11 +2,14 @@
   "name": "outages",
   "version": "1.0.0",
   "description": "API tools for retrieving outages from an endpoint, filtering, appending device names, and then posting to another endpoint",
-  "main": "app.js",
+  "main": "./bin/app.js",
+  "bin": {
+    "outages": "./bin/app.js"
+  },
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node dist/index.js",
+    "start": "node bin/app.js",
     "lint": "eslint --ext ts src",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier 'src/**/*.ts' --write",
