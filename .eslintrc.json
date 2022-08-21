@@ -27,7 +27,6 @@
         "lib/**"
     ],
     "rules": {
-        "no-console": "error",
         "camelcase": "error",
         "@typescript-eslint/explicit-function-return-type": [
             "error",
