@@ -8,7 +8,7 @@ import { OutageItem } from '../../src/types/outageTypes'
 
 const filterDate = new Date('2022-01-01T00:00:00.000Z')
 
-describe('happy path', () => {
+describe('Filtering by date', () => {
     test('Test filtering dates mix', async () => {
         const returned = filterOutages.filterEventsBefore(
             filterDate,
