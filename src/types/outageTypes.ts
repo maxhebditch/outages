@@ -5,6 +5,7 @@ export interface OutageItem {
 }
 
 export interface OutageResponse {
-    status: number
-    data: OutageItem[]
+    success: boolean
+    status?: number
+    data?: OutageItem[]
 }
