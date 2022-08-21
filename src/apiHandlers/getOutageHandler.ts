@@ -4,7 +4,8 @@ import config from 'config'
 
 export const requestOutages = async(): Promise<OutageItem[]> => {
     const outagesURL = `${config.get('API.URL')}${config.get('API.OUTAGES_ENDPOINT')}`
-    const { data, status } = await axios.get<OutageItem[]>(outagesURL)
+    const outagesRequest = `${outagesURL}?api_key=${process.env.API_KEY}`
+    const { data, status } = await axios.get<OutageItem[]>(outagesRequest)
     return data
 }
 
