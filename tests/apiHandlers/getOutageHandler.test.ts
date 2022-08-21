@@ -57,3 +57,23 @@ describe('Test unhappy path response 500', () => {
         expect(returned).toEqual(expectedResponse)
     })
 })
+
+describe('Test unhappy path network Error', () => {
+    beforeAll(() => {
+        mock.onGet(outagesRequest).networkError()
+    })
+    afterAll(() => {
+        mock.reset();
+    })
+
+    test('Test requestOutages return', async () => {
+        await expect(outageHandler.requestOutages()).rejects.toThrowError(AxiosError)
+    })
+    test('Test getAllOutages return', async () => {
+        const expectedResponse = {
+            success: false
+        }
+        const returned = await outageHandler.getAllOutages()
+        expect(returned).toEqual(expectedResponse)
+    })
+})
