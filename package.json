@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "API tools for retrieving outages from an endpoint, filtering, appending device names, and then posting to another endpoint",
   "private": true,
-  "main": "./bin/app.js",
+  "main": "./bin/outages",
   "bin": {
-    "outages": "./bin/app.js"
+    "outages": "./bin/outages"
   },
   "scripts": {
     "build": "tsc",
