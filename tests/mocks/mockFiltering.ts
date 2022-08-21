@@ -1,6 +1,6 @@
 import { OutageItem } from '../../src/types/outageTypes'
 
-export const mockFilteredOutagesItems: OutageItem[] = [
+export const mockValidOutagesItems: OutageItem[] = [
     {
         id: '002b28fc-283c-47ec-9af2-ea287336dc1b',
         begin: '2022-05-23T12:21:27.377Z',
@@ -19,6 +19,19 @@ export const mockFilteredOutagesItems: OutageItem[] = [
     {
         id: '086b0d53-b311-4441-aaf3-935646f03d4d',
         begin: '2022-07-12T16:31:47.254Z',
+        end: '2022-10-13T04:05:10.044Z'
+    }
+]
+
+export const mockInvalidOutagesItems: OutageItem[] = [
+    {
+        id: '002b28fc-283c-47ec-9af2-ea287336dc1b',
+        begin: '2021-07-26T17:09:31.036Z',
+        end: '2021-08-29T00:37:42.253Z'
+    },
+    {
+        id: '27820d4a-1bc4-4fc1-a5f0-bcb3627e94a1',
+        begin: '2021-07-12T16:31:47.254Z',
         end: '2022-10-13T04:05:10.044Z'
     }
 ]
