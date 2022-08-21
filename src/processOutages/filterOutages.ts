@@ -26,9 +26,9 @@ export const filterEventsWithIds = (
     })
 }
 
-export const filterEvents = (
-    outageItems: OutageItem[],
-    siteInfo: SiteInfo
+export const filterEventsByTimeAndId = (
+    siteInfo: SiteInfo,
+    outageItems: OutageItem[]
 ): OutageItem[] => {
     // ideally would determine if filter is for events in this calendar year
     const filterDate = new Date(config.get('FILTER.DATE_BEFORE'))

@@ -3,7 +3,8 @@ import {
     mockValidOutagesItems,
     mockInvalidOutagesItems,
     mockSiteIds,
-    mockSpecificIdOutagesItems
+    mockSpecificIdOutagesItems,
+    mockSpecificIdAndTimeOutagesItems
 } from '../mocks/mockFiltering'
 import * as filterOutages from '../../src/processOutages/filterOutages'
 import { OutageItem } from '../../src/types/outageTypes'
@@ -68,6 +69,41 @@ describe('Filter outages by id', () => {
         const returned = filterOutages.filterEventsWithIds(
             [],
             mockAllOutagesItems
+        )
+        expect(returned).toEqual([])
+    })
+})
+
+describe('Test filterEventsByTimeAndId', () => {
+    test('Test with ids and events', async () => {
+        const returned = filterOutages.filterEventsByTimeAndId(
+            mockSiteInfo,
+            mockAllOutagesItems
+        )
+        expect(returned).toEqual(mockSpecificIdAndTimeOutagesItems)
+    })
+    test('Test with no ids and events returns empty array', async () => {
+        const returned = filterOutages.filterEventsByTimeAndId(
+            {
+                devices: [] as SiteDevice[]
+            } as SiteInfo,
+            mockAllOutagesItems
+        )
+        expect(returned).toEqual([])
+    })
+    test('Test ids and no events returns empty array', async () => {
+        const returned = filterOutages.filterEventsByTimeAndId(
+            mockSiteInfo,
+            [] as OutageItem[]
+        )
+        expect(returned).toEqual([])
+    })
+    test('Test no ids and no events returns empty array', async () => {
+        const returned = filterOutages.filterEventsByTimeAndId(
+            {
+                devices: [] as SiteDevice[]
+            } as SiteInfo,
+            [] as OutageItem[]
         )
         expect(returned).toEqual([])
     })
