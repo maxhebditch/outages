@@ -1,6 +1,12 @@
 import { OutageItem } from '../types/outageTypes'
+import { SiteInfo } from '../types/siteInfoTypes'
 import config from 'config'
 
+export const extractSiteId = (siteInfo: SiteInfo): string[] => {
+    return siteInfo.devices.map((device): string => {
+        return device.id
+    })
+}
 
 export const filterEventsBefore = (
     filterDate: Date,

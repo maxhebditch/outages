@@ -1,10 +1,12 @@
-import { mockAllOutagesItems } from '../mocks/mockResponses'
+import { mockAllOutagesItems, mockSiteInfo } from '../mocks/mockResponses'
 import {
     mockValidOutagesItems,
-    mockInvalidOutagesItems
+    mockInvalidOutagesItems,
+    mockSiteIds
 } from '../mocks/mockFiltering'
 import * as filterOutages from '../../src/processOutages/filterOutages'
 import { OutageItem } from '../../src/types/outageTypes'
+import { SiteDevice, SiteInfo } from '../../src/types/siteInfoTypes'
 
 const filterDate = new Date('2022-01-01T00:00:00.000Z')
 
@@ -30,5 +32,18 @@ describe('Filtering by date', () => {
             mockInvalidOutagesItems
         )
         expect(returned).toEqual(expected)
+    })
+})
+
+describe('Extract Ids from site info', () => {
+    test('Test extract ids', async () => {
+        const returned = filterOutages.extractSiteId(mockSiteInfo)
+        expect(returned).toEqual(mockSiteIds)
+    })
+    test('Test extract ids missing', async () => {
+        const returned = filterOutages.extractSiteId({
+            devices: [] as SiteDevice[]
+        } as SiteInfo)
+        expect(returned).toEqual([])
     })
 })

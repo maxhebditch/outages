@@ -35,3 +35,8 @@ export const mockInvalidOutagesItems: OutageItem[] = [
         end: '2022-10-13T04:05:10.044Z'
     }
 ]
+
+export const mockSiteIds: string[] = [
+    '002b28fc-283c-47ec-9af2-ea287336dc1b',
+    '086b0d53-b311-4441-aaf3-935646f03d4d'
+]
