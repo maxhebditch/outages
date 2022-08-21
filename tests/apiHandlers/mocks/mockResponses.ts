@@ -1,4 +1,5 @@
 import { OutageItem } from '../../../src/types/outageTypes'
+import { SiteInfo } from '../../../src/types/siteInfoTypes'
 
 export const mockAllOutagesItems: OutageItem[] = [
     {
@@ -32,3 +33,18 @@ export const mockAllOutagesItems: OutageItem[] = [
         end: '2022-10-13T04:05:10.044Z'
     }
 ]
+
+export const mockSiteInfo: SiteInfo = {
+    id: 'kingfisher',
+    name: 'KingFisher',
+    devices: [
+        {
+            id: '002b28fc-283c-47ec-9af2-ea287336dc1b',
+            name: 'Battery 1'
+        },
+        {
+            id: '086b0d53-b311-4441-aaf3-935646f03d4d',
+            name: 'Battery 2'
+        }
+    ]
+}
