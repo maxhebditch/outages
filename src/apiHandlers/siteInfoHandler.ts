@@ -10,6 +10,25 @@ export const requestSiteInformation = async (): Promise<AxiosResponse> => {
     return await axios.get<SiteInfo>(siteInfoRequest)
 }
 
-export const getSiteInformation = (): void => {
-    return
+export const getSiteInformation = async (): Promise<RequestResponse> => {
+    try {
+        const response: AxiosResponse = await requestSiteInformation()
+
+        return {
+            success: true,
+            status: response.status,
+            data: response.data
+        } as RequestResponse
+    } catch (error) {
+        const err = error as AxiosError
+        const returnStructure = {
+            success: false
+        } as RequestResponse
+
+        if (err.response?.status) {
+            returnStructure.status = err.response.status
+        }
+
+        return returnStructure
+    }
 }
