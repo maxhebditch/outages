@@ -1,5 +1,5 @@
 import { OutageItem, OutageResponse } from '../types/outageTypes'
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosResponse, AxiosError } from 'axios'
 import config from 'config'
 
 export const requestOutages = async (): Promise<AxiosResponse> => {
@@ -11,9 +11,26 @@ export const requestOutages = async (): Promise<AxiosResponse> => {
 }
 
 export const getAllOutages = async (): Promise<OutageResponse> => {
-    const { data, status } = await requestOutages()
-    return {
-        status: status,
-        data: data
-    } as OutageResponse
+    try {
+        const response: AxiosResponse = await requestOutages()
+
+        return {
+            success: true,
+            status: response.status,
+            data: response.data
+        } as OutageResponse
+
+    } catch (error) {
+        const err = error as AxiosError
+        const returnStructure = {
+            success: false
+        } as OutageResponse
+
+        if (err.response?.status) {
+            returnStructure.status = err.response.status
+        }
+
+        return returnStructure
+    }
+
 }
