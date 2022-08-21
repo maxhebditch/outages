@@ -5,8 +5,9 @@ import MockAdapter from 'axios-mock-adapter'
 import config from 'config'
 
 process.env.API_KEY = 'fakekey'
+const siteId = 'kingfisher'
 const siteInfoURL = `${config.get('API.URL')}${config.get('API.SITE_INFO')}`
-const siteInfoRequest = `${siteInfoURL}?api_key=${process.env.API_KEY}`
+const siteInfoRequest = `${siteInfoURL}/${siteId}?api_key=${process.env.API_KEY}`
 const mock = new MockAdapter(axios)
 
 describe('Test happy path', () => {
@@ -19,7 +20,7 @@ describe('Test happy path', () => {
     })
 
     test('Test requestSiteInformation returns data and status', async () => {
-        const returned = await siteInfoHandler.requestSiteInformation()
+        const returned = await siteInfoHandler.requestSiteInformation(siteId)
         expect(returned.data).toEqual(mockSiteInfo)
         expect(returned.status).toEqual(200)
     })
@@ -29,7 +30,7 @@ describe('Test happy path', () => {
             success: true,
             data: mockSiteInfo
         }
-        const returned = await siteInfoHandler.getSiteInformation()
+        const returned = await siteInfoHandler.getSiteInformation(siteId)
         expect(returned).toEqual(expectedResponse)
     })
 })
@@ -44,7 +45,7 @@ describe('Test response 500', () => {
 
     test('Test requestSiteInformation throws AxiosError', async () => {
         await expect(
-            siteInfoHandler.requestSiteInformation()
+            siteInfoHandler.requestSiteInformation(siteId)
         ).rejects.toThrowError(AxiosError)
     })
     test('Test getSiteInformation() returns expected response with status code', async () => {
@@ -52,7 +53,7 @@ describe('Test response 500', () => {
             success: false,
             status: 500
         }
-        const returned = await siteInfoHandler.getSiteInformation()
+        const returned = await siteInfoHandler.getSiteInformation(siteId)
         expect(returned).toEqual(expectedResponse)
     })
 })
@@ -67,14 +68,14 @@ describe('Test network Error', () => {
 
     test('Test requestSiteInformation throws AxiosError', async () => {
         await expect(
-            siteInfoHandler.requestSiteInformation()
+            siteInfoHandler.requestSiteInformation(siteId)
         ).rejects.toThrowError(AxiosError)
     })
     test('Test getSiteInformation() returns expected response without status code', async () => {
         const expectedResponse = {
             success: false
         }
-        const returned = await siteInfoHandler.getSiteInformation()
+        const returned = await siteInfoHandler.getSiteInformation(siteId)
         expect(returned).toEqual(expectedResponse)
     })
 })
