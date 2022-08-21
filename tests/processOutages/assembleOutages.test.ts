@@ -1,18 +1,11 @@
-import { mockAllOutagesItems, mockSiteInfo } from '../mocks/mockResponses'
+import { mockSiteInfo } from '../mocks/mockResponses'
 import {
-    mockValidOutagesItems,
-    mockInvalidOutagesItems,
-    mockSiteIds,
-    mockSpecificIdOutagesItems,
     mockSpecificIdAndTimeOutagesItems,
     mockmapIdToName,
     mockAssembledEvents
 } from '../mocks/mockFiltering'
 import * as assembleOutages from '../../src/processOutages/assembleOutages'
-import { OutageItem } from '../../src/types/outageTypes'
 import { SiteDevice, SiteInfo } from '../../src/types/siteInfoTypes'
-
-const filterDate = new Date('2022-01-01T00:00:00.000Z')
 
 describe('Test Mapping Name to ID', () => {
     test('Test with usable name and id', async () => {
