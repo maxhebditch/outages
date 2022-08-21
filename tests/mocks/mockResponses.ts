@@ -1,5 +1,6 @@
 import { OutageItem } from '../../src/types/outageTypes'
 import { SiteInfo } from '../../src/types/siteInfoTypes'
+import { OutagePost } from '../../src/types/postTypes'
 
 export const mockAllOutagesItems: OutageItem[] = [
     {
@@ -47,4 +48,8 @@ export const mockSiteInfo: SiteInfo = {
             name: 'Battery 2'
         }
     ]
+}
+
+export const mockPost: OutagePost = {
+    message: 'Successfully processed request'
 }
