@@ -21,12 +21,12 @@ describe('Test happy path', () => {
         mock.reset();
     })
 
-    test('Test requestOutages return', async () => {
+    test('Test requestOutages returns data and status', async () => {
         const returned = await outageHandler.requestOutages()
         expect(returned.data).toEqual(mockAllOutagesItems)
         expect(returned.status).toEqual(200)
     })
-    test('Test getAllOutages return', async () => {
+    test('Test getAllOutages returns expected response', async () => {
         const expectedResponse = {
             status: 200,
             success: true,
@@ -37,7 +37,7 @@ describe('Test happy path', () => {
     })
 })
 
-describe('Test unhappy path response 500', () => {
+describe('Test response 500', () => {
     beforeAll(() => {
         mock.onGet(outagesRequest).reply(500)
     })
@@ -45,10 +45,10 @@ describe('Test unhappy path response 500', () => {
         mock.reset();
     })
 
-    test('Test requestOutages return', async () => {
+    test('Test requestOutages throws AxiosError', async () => {
         await expect(outageHandler.requestOutages()).rejects.toThrowError(AxiosError)
     })
-    test('Test getAllOutages return', async () => {
+    test('Test getAllOutages returns expected response with status code', async () => {
         const expectedResponse = {
             success: false,
             status: 500
@@ -58,7 +58,7 @@ describe('Test unhappy path response 500', () => {
     })
 })
 
-describe('Test unhappy path network Error', () => {
+describe('Test network Error', () => {
     beforeAll(() => {
         mock.onGet(outagesRequest).networkError()
     })
@@ -66,10 +66,10 @@ describe('Test unhappy path network Error', () => {
         mock.reset();
     })
 
-    test('Test requestOutages return', async () => {
+    test('Test requestOutages throws AxiosError', async () => {
         await expect(outageHandler.requestOutages()).rejects.toThrowError(AxiosError)
     })
-    test('Test getAllOutages return', async () => {
+    test('Test getAllOutages returns expected response without status code', async () => {
         const expectedResponse = {
             success: false
         }
