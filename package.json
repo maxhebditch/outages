@@ -4,7 +4,13 @@
   "description": "API tools for retrieving outages from an endpoint, filtering, appending device names, and then posting to another endpoint",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "lint": "eslint --ext ts src",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier 'src/**/*.ts' --write",
+    "test": "jest"
   },
   "author": "Max Hebditch",
   "license": "MIT",
