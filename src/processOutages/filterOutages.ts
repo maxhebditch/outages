@@ -4,5 +4,7 @@ export const filterEventsBefore = (
     filterDate: Date,
     outageItems: OutageItem[]
 ): OutageItem[] => {
-    return outageItems
+    return outageItems.filter((event) : boolean => {
+        return new Date(event.begin).getTime() > filterDate.getTime()
+    })
 }

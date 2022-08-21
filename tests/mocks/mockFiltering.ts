@@ -20,10 +20,5 @@ export const mockFilteredOutagesItems: OutageItem[] = [
         id: '086b0d53-b311-4441-aaf3-935646f03d4d',
         begin: '2022-07-12T16:31:47.254Z',
         end: '2022-10-13T04:05:10.044Z'
-    },
-    {
-        id: '27820d4a-1bc4-4fc1-a5f0-bcb3627e94a1',
-        begin: '2021-07-12T16:31:47.254Z',
-        end: '2022-10-13T04:05:10.044Z'
     }
 ]
