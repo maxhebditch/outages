@@ -1,6 +1,7 @@
 import * as outageHandler from '../../src/apiHandlers/getOutageHandler'
 import { mockAllOutagesItems } from '../mocks/mockResponses'
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
+import { kfClient } from '../../src/apiHandlers/kfClient'
 import MockAdapter from 'axios-mock-adapter'
 import config from 'config'
 
@@ -8,12 +9,11 @@ process.env.API_KEY = 'fakekey'
 const outagesURL = `${config.get('API.URL')}${config.get(
     'API.OUTAGES_ENDPOINT'
 )}`
-const outagesRequest = `${outagesURL}?api_key=${process.env.API_KEY}`
-const mock = new MockAdapter(axios)
+const mock = new MockAdapter(kfClient)
 
 describe('Test happy path', () => {
     beforeAll(() => {
-        mock.onGet(outagesRequest).reply(200, mockAllOutagesItems)
+        mock.onGet(outagesURL).reply(200, mockAllOutagesItems)
     })
 
     afterAll(() => {
@@ -38,7 +38,7 @@ describe('Test happy path', () => {
 
 describe('Test response 500', () => {
     beforeAll(() => {
-        mock.onGet(outagesRequest).reply(500)
+        mock.onGet(outagesURL).reply(500)
     })
     afterAll(() => {
         mock.reset()
@@ -61,7 +61,7 @@ describe('Test response 500', () => {
 
 describe('Test network Error', () => {
     beforeAll(() => {
-        mock.onGet(outagesRequest).networkError()
+        mock.onGet(outagesURL).networkError()
     })
     afterAll(() => {
         mock.reset()

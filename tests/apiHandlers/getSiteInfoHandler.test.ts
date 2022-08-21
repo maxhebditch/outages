@@ -1,18 +1,20 @@
 import * as getSiteInfoHandler from '../../src/apiHandlers/getSiteInfoHandler'
 import { mockSiteInfo } from '../mocks/mockResponses'
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
+import { kfClient } from '../../src/apiHandlers/kfClient'
 import MockAdapter from 'axios-mock-adapter'
 import config from 'config'
 
 process.env.API_KEY = 'fakekey'
 const siteId = 'kingfisher'
-const siteInfoURL = `${config.get('API.URL')}${config.get('API.SITE_INFO')}`
-const siteInfoRequest = `${siteInfoURL}/${siteId}?api_key=${process.env.API_KEY}`
-const mock = new MockAdapter(axios)
+const siteInfoURL = `${config.get('API.URL')}${config.get(
+    'API.SITE_INFO'
+)}/${siteId}`
+const mock = new MockAdapter(kfClient)
 
 describe('Test happy path', () => {
     beforeAll(() => {
-        mock.onGet(siteInfoRequest).reply(200, mockSiteInfo)
+        mock.onGet(siteInfoURL).reply(200, mockSiteInfo)
     })
 
     afterAll(() => {
@@ -37,7 +39,7 @@ describe('Test happy path', () => {
 
 describe('Test response 500', () => {
     beforeAll(() => {
-        mock.onGet(siteInfoRequest).reply(500)
+        mock.onGet(siteInfoURL).reply(500)
     })
     afterAll(() => {
         mock.reset()
@@ -60,7 +62,7 @@ describe('Test response 500', () => {
 
 describe('Test network Error', () => {
     beforeAll(() => {
-        mock.onGet(siteInfoRequest).networkError()
+        mock.onGet(siteInfoURL).networkError()
     })
     afterAll(() => {
         mock.reset()

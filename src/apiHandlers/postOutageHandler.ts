@@ -1,18 +1,16 @@
 import { OutageItem } from '../types/outageTypes'
 import { RequestResponse } from '../types/requestType'
+import { kfClient } from './kfClient'
 
-import axios, { AxiosResponse, AxiosError } from 'axios'
+import { AxiosResponse, AxiosError } from 'axios'
 import config from 'config'
 
 export const postOutageInformation = async (
     siteId: string,
     outageItems: OutageItem[]
 ): Promise<AxiosResponse> => {
-    const postOutageURL = `${config.get('API.URL')}${config.get(
-        'API.POST_ENDPOINT'
-    )}`
-    const postOutageRequest = `${postOutageURL}/${siteId}?api_key=${process.env.API_KEY}`
-    return await axios.post<OutageItem[]>(postOutageRequest, outageItems)
+    const postOutageRequest = `${config.get('API.POST_ENDPOINT')}/${siteId}`
+    return await kfClient.post<OutageItem[]>(postOutageRequest, outageItems)
 }
 
 export const handlePostOutage = async (

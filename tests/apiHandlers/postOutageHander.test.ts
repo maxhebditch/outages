@@ -1,19 +1,21 @@
 import * as postOutageHandler from '../../src/apiHandlers/postOutageHandler'
 import { mockPost } from '../mocks/mockResponses'
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
+import { kfClient } from '../../src/apiHandlers/kfClient'
 import MockAdapter from 'axios-mock-adapter'
 import config from 'config'
 import { mockSpecificIdAndTimeOutagesItems } from '../mocks/mockFiltering'
 
 process.env.API_KEY = 'fakekey'
 const siteId = 'kingfisher'
-const postURL = `${config.get('API.URL')}${config.get('API.POST_ENDPOINT')}`
-const postRequest = `${postURL}/${siteId}?api_key=${process.env.API_KEY}`
-const mock = new MockAdapter(axios)
+const postURL = `${config.get('API.URL')}${config.get(
+    'API.POST_ENDPOINT'
+)}/${siteId}`
+const mock = new MockAdapter(kfClient)
 
 describe('Test happy path', () => {
     beforeAll(() => {
-        mock.onPost(postRequest).reply(200, mockPost)
+        mock.onPost(postURL).reply(200, mockPost)
     })
 
     afterAll(() => {
@@ -43,7 +45,7 @@ describe('Test happy path', () => {
 
 describe('Test response 500', () => {
     beforeAll(() => {
-        mock.onPost(postRequest).reply(500)
+        mock.onPost(postURL).reply(500)
     })
     afterAll(() => {
         mock.reset()
@@ -72,7 +74,7 @@ describe('Test response 500', () => {
 
 describe('Test network Error', () => {
     beforeAll(() => {
-        mock.onPost(postRequest).networkError()
+        mock.onPost(postURL).networkError()
     })
     afterAll(() => {
         mock.reset()
