@@ -1,0 +1,11 @@
+{
+  "name": "outages",
+  "version": "1.0.0",
+  "description": "API tools for retrieving outages from an endpoint, filtering, appending device names, and then posting to another endpoint",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Max Hebditch",
+  "license": "MIT"
+}
