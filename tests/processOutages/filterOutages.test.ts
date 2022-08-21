@@ -2,7 +2,8 @@ import { mockAllOutagesItems, mockSiteInfo } from '../mocks/mockResponses'
 import {
     mockValidOutagesItems,
     mockInvalidOutagesItems,
-    mockSiteIds
+    mockSiteIds,
+    mockSpecificIdOutagesItems
 } from '../mocks/mockFiltering'
 import * as filterOutages from '../../src/processOutages/filterOutages'
 import { OutageItem } from '../../src/types/outageTypes'
@@ -44,6 +45,30 @@ describe('Extract Ids from site info', () => {
         const returned = filterOutages.extractSiteId({
             devices: [] as SiteDevice[]
         } as SiteInfo)
+        expect(returned).toEqual([])
+    })
+})
+
+describe('Filter outages by id', () => {
+    test('Test filtering outages by id', async () => {
+        const returned = filterOutages.filterEventsWithIds(
+            mockSiteIds,
+            mockAllOutagesItems
+        )
+        expect(returned).toEqual(mockSpecificIdOutagesItems)
+    })
+    test('Test no match ids', async () => {
+        const returned = filterOutages.filterEventsWithIds(
+            ['RANDOM_ID'],
+            mockAllOutagesItems
+        )
+        expect(returned).toEqual([])
+    })
+    test('Test no provided ids', async () => {
+        const returned = filterOutages.filterEventsWithIds(
+            [],
+            mockAllOutagesItems
+        )
         expect(returned).toEqual([])
     })
 })
