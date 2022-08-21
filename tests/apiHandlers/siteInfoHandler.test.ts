@@ -43,9 +43,9 @@ describe('Test response 500', () => {
     })
 
     test('Test requestSiteInformation throws AxiosError', async () => {
-        await expect(siteInfoHandler.requestSiteInformation()).rejects.toThrowError(
-            AxiosError
-        )
+        await expect(
+            siteInfoHandler.requestSiteInformation()
+        ).rejects.toThrowError(AxiosError)
     })
     test('Test getSiteInformation() returns expected response with status code', async () => {
         const expectedResponse = {
@@ -66,9 +66,9 @@ describe('Test network Error', () => {
     })
 
     test('Test requestSiteInformation throws AxiosError', async () => {
-        await expect(siteInfoHandler.requestSiteInformation()).rejects.toThrowError(
-            AxiosError
-        )
+        await expect(
+            siteInfoHandler.requestSiteInformation()
+        ).rejects.toThrowError(AxiosError)
     })
     test('Test getSiteInformation() returns expected response without status code', async () => {
         const expectedResponse = {
