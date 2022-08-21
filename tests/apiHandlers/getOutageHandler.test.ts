@@ -11,14 +11,13 @@ const outagesURL = `${config.get('API.URL')}${config.get(
 const outagesRequest = `${outagesURL}?api_key=${process.env.API_KEY}`
 const mock = new MockAdapter(axios)
 
-
 describe('Test happy path', () => {
     beforeAll(() => {
         mock.onGet(outagesRequest).reply(200, mockAllOutagesItems)
     })
 
     afterAll(() => {
-        mock.reset();
+        mock.reset()
     })
 
     test('Test requestOutages returns data and status', async () => {
@@ -42,11 +41,13 @@ describe('Test response 500', () => {
         mock.onGet(outagesRequest).reply(500)
     })
     afterAll(() => {
-        mock.reset();
+        mock.reset()
     })
 
     test('Test requestOutages throws AxiosError', async () => {
-        await expect(outageHandler.requestOutages()).rejects.toThrowError(AxiosError)
+        await expect(outageHandler.requestOutages()).rejects.toThrowError(
+            AxiosError
+        )
     })
     test('Test getAllOutages returns expected response with status code', async () => {
         const expectedResponse = {
@@ -63,11 +64,13 @@ describe('Test network Error', () => {
         mock.onGet(outagesRequest).networkError()
     })
     afterAll(() => {
-        mock.reset();
+        mock.reset()
     })
 
     test('Test requestOutages throws AxiosError', async () => {
-        await expect(outageHandler.requestOutages()).rejects.toThrowError(AxiosError)
+        await expect(outageHandler.requestOutages()).rejects.toThrowError(
+            AxiosError
+        )
     })
     test('Test getAllOutages returns expected response without status code', async () => {
         const expectedResponse = {

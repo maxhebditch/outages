@@ -19,7 +19,6 @@ export const getAllOutages = async (): Promise<OutageResponse> => {
             status: response.status,
             data: response.data
         } as OutageResponse
-
     } catch (error) {
         const err = error as AxiosError
         const returnStructure = {
@@ -32,5 +31,4 @@ export const getAllOutages = async (): Promise<OutageResponse> => {
 
         return returnStructure
     }
-
 }
