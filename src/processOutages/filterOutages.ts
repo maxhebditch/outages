@@ -15,7 +15,7 @@ export const filterEventsBefore = (
     // deep copy of the original events before filtering to make testing easier
     const returnItems = JSON.parse(JSON.stringify(outageItems))
     return returnItems.filter((event: OutageItem): boolean => {
-        return new Date(event.begin).getTime() > filterDate.getTime()
+        return new Date(event.begin).getTime() >= filterDate.getTime()
     })
 }
 
