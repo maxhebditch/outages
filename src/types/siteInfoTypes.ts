@@ -1,3 +1,4 @@
+//site info types
 export interface SiteInfo {
     id: string
     name: string

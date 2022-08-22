@@ -5,4 +5,5 @@ export const main = async (siteId: string): Promise<void> => {
     await appWrapper(siteId)
 }
 
+// CLI input, currently runs on single site id, would extend with CLI args
 main('norwich-pear-tree')

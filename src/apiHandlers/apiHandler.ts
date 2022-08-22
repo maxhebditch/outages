@@ -2,6 +2,8 @@ import { RequestResponse } from '../types/requestType'
 
 import { AxiosResponse, AxiosError } from 'axios'
 
+// generic function that can take the result of an API request and wrap it with
+// a simple type that allows handling failures
 export const handleRequest = async (
     getAPI: Promise<AxiosResponse>
 ): Promise<RequestResponse> => {

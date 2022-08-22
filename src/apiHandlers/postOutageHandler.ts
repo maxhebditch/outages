@@ -5,6 +5,7 @@ import { kfClient } from './kfClient'
 import { AxiosResponse, AxiosError } from 'axios'
 import config from 'config'
 
+// Uses the authenticated axios client and configured endpoints to post the enhanced results
 export const postOutageInformation = async (
     siteId: string,
     outageItems: OutageItem[]
@@ -13,6 +14,7 @@ export const postOutageInformation = async (
     return await kfClient.post(postOutageRequest, outageItems)
 }
 
+// Function to gracefully handle errors when posting to the outage endpoint
 export const handlePostOutage = async (
     siteId: string,
     outageItems: OutageItem[]

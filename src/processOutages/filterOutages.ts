@@ -2,12 +2,14 @@ import { OutageItem } from '../types/outageTypes'
 import { SiteInfo } from '../types/siteInfoTypes'
 import config from 'config'
 
+// generates a list of desired site ids
 export const extractSiteId = (siteInfo: SiteInfo): string[] => {
     return siteInfo.devices.map((device): string => {
         return device.id
     })
 }
 
+// Only return events that occured at the same time or after the cutoff
 export const filterEventsBefore = (
     filterDate: Date,
     outageItems: OutageItem[]
@@ -19,6 +21,7 @@ export const filterEventsBefore = (
     })
 }
 
+// only return events that have matching ids
 export const filterEventsWithIds = (
     ids: string[],
     outageItems: OutageItem[]
@@ -28,6 +31,7 @@ export const filterEventsWithIds = (
     })
 }
 
+// orchestrates the filtering by date and id
 export const filterEventsByTimeAndId = (
     siteInfo: SiteInfo,
     outageItems: OutageItem[]

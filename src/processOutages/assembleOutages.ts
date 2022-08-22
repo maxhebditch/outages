@@ -1,6 +1,7 @@
 import { OutageItem } from '../types/outageTypes'
 import { SiteInfo } from '../types/siteInfoTypes'
 
+// Creates a map of Id to name for looking up what name should be used to enhance outage events
 export const mapIdToName = (siteInfo: SiteInfo): Record<string, string> => {
     return siteInfo.devices.reduce<Record<string, string>>(
         (map, item): Record<string, string> => {
@@ -13,6 +14,7 @@ export const mapIdToName = (siteInfo: SiteInfo): Record<string, string> => {
     )
 }
 
+// Uses the k:v of id:name to add the name to the event
 export const addNameToEvent = (
     idToName: Record<string, string>,
     outageItems: OutageItem[]
@@ -29,6 +31,7 @@ export const addNameToEvent = (
     )
 }
 
+// first generates the map of id to names and then adds them to the event
 export const assembleOutages = (
     siteInfo: SiteInfo,
     outageItems: OutageItem[]
