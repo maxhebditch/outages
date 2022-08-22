@@ -12,7 +12,9 @@ export const filterEventsBefore = (
     filterDate: Date,
     outageItems: OutageItem[]
 ): OutageItem[] => {
-    return outageItems.filter((event): boolean => {
+    // deep copy of the original events before filtering to make testing easier
+    const returnItems = JSON.parse(JSON.stringify(outageItems))
+    return returnItems.filter((event: OutageItem): boolean => {
         return new Date(event.begin).getTime() > filterDate.getTime()
     })
 }
@@ -21,7 +23,7 @@ export const filterEventsWithIds = (
     ids: string[],
     outageItems: OutageItem[]
 ): OutageItem[] => {
-    return outageItems.filter((event): boolean => {
+    return outageItems.filter((event: OutageItem): boolean => {
         return ids.includes(event.id)
     })
 }

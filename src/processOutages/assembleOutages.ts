@@ -17,10 +17,12 @@ export const addNameToEvent = (
     idToName: Record<string, string>,
     outageItems: OutageItem[]
 ): OutageItem[] => {
-    return outageItems.map((event): OutageItem => {
-        event.name = idToName[event.id]
-        return event
-    })
+    return JSON.parse(JSON.stringify(outageItems)).map(
+        (event: OutageItem): OutageItem => {
+            event.name = idToName[event.id]
+            return event
+        }
+    )
 }
 
 export const assembleOutages = (
