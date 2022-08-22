@@ -12,6 +12,8 @@ It achieves this by
 
 The tool provided in this repository contains a number of individual functions to achieve the above, which are then handled by a simple CLI tool to perform the function and orchestrate the information flow.
 
+The code was designed in this was as to make it easy to convert to an express app or similar.
+
 The code is also resilient to 500 errors and will gracefully exit.
 Other tooling could rerun these functions until a succesful result was achieve if desired.
 
