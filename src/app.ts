@@ -1,5 +1,5 @@
-function main(): void {
-    console.log('HELLO FROM APP')
-}
+import { appWrapper } from './appHandlers/runApp'
 
-main()
+export const main = async (): Promise<void> => {
+    appWrapper('kingfisher')
+}
