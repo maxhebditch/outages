@@ -10,7 +10,7 @@ export const postOutageInformation = async (
     outageItems: OutageItem[]
 ): Promise<AxiosResponse> => {
     const postOutageRequest = `${config.get('API.POST_ENDPOINT')}/${siteId}`
-    return await kfClient.post<OutageItem[]>(postOutageRequest, outageItems)
+    return await kfClient.post(postOutageRequest, outageItems)
 }
 
 export const handlePostOutage = async (
