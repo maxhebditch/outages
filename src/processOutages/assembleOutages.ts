@@ -19,8 +19,12 @@ export const addNameToEvent = (
 ): OutageItem[] => {
     return JSON.parse(JSON.stringify(outageItems)).map(
         (event: OutageItem): OutageItem => {
-            event.name = idToName[event.id]
-            return event
+            return {
+                id: event.id,
+                name: idToName[event.id],
+                begin: event.begin,
+                end: event.end
+            } as OutageItem
         }
     )
 }
